@@ -1,15 +1,17 @@
+// IMPORTS
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Header from './components/Header';
-import HangmanPicture from './components/HangmanPicture';
-import Toolbar from './components/Toolbar';
+import {createRoot} from 'react-dom/client';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Header />
-    <Toolbar />
-    <HangmanPicture />
-  </React.StrictMode>,
-  document.getElementById('root'),
+import App from './App'
+
+// RENDER
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement!);
+
+// const [context, setContext] = useState("default context value");
+
+root.render(
+    <React.StrictMode >
+        <App />
+    </React.StrictMode >
 );
