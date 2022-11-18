@@ -36,11 +36,19 @@ function Toolbar() {
 function restartButton(data:dataType, setData:any, config:configType) : any {
   return(
     () => {
+      // randomly select a new word
+      let allWords : string[] = config.words[config.language]
       let newWord : string = data.word;
       while (newWord === data.word) {
-        newWord = config.words[getRandomInt(0,config.words.length)]
+        newWord = allWords[getRandomInt(0,allWords.length)]
       }
-      setData({word:newWord, knowledge:new Array(newWord.length).fill(VISIBILITY), lives:10, spaces:newWord.length});
+      // init the data state
+      setData({
+        word : newWord,
+        knowledge : new Array(newWord.length).fill(VISIBILITY),
+        lives : 10,
+        spaces : newWord.length});
+      // clean keyboard buttons
       for (var i=0; i < config.alphabet.length; i++) {
           const buttonLetter = document.getElementById("KB-"+config.alphabet[i]) as HTMLButtonElement | null;
           if (buttonLetter != null) {buttonLetter.disabled = false ; buttonLetter.style.backgroundColor = "#777"}
@@ -52,8 +60,10 @@ function restartButton(data:dataType, setData:any, config:configType) : any {
 function levelButton(config:any, setConfig:any) {
   return(
     () => {
+      // update the game level
       let newLevel : number = (config.level + 1) % 3;
       setConfig({...config, level : newLevel});
+      // update level button
       let buttonLevel = document.getElementById("level");
       if (buttonLevel != null) {buttonLevel.innerHTML = newLevel.toString()};
     }
@@ -61,18 +71,12 @@ function levelButton(config:any, setConfig:any) {
 }
 
 function languageButton(data:dataType, setData:any, config:any, setConfig:any) {
-  return(
-    async () => {
-      // set new language
+  return(() => {
+      // update the config state
       const newLanguage = (config.language === "french") ? "english" : "french";
-      const file = (newLanguage === "french") ? "./data/french.txt" : "./data/english.txt";
-      await fetch(file)
-            .then(text => text.text())
-            .then(text => setConfig({language : newLanguage, 
-                                   alphabet : config.alphabet, 
-                                   words : text.split("\n"),
-                                   level : 0}))
-      console.log("Data " + newLanguage.toUpperCase() + " fetched !")
+      setConfig({...config, language:newLanguage})
+      console.log("Switch to " + newLanguage.toUpperCase())
+      // update language button
       let buttonLanguage = document.getElementById("language");
       if (buttonLanguage != null) {buttonLanguage.innerHTML = newLanguage.toUpperCase()};
     }

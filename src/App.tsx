@@ -6,14 +6,17 @@ import HangmanPicture from './components/HangmanPicture';
 import Toolbar from './components/Toolbar';
 import MysteryWord from './components/MysteryWord'
 import Keyboard from './components/Keyboard'
-import { getRandomInt } from './components/utils';
+import {initData} from './components/utils';
 import './index.css';
 
 // TYPES & CONTEXTS
 import DataContext from './components/dataContext'
 import {dataType, dataStateDefault} from './components/dataContext'
 import DicoContext from './components/configContext'
-import {configType, configStateDefault, ALPHABET} from './components/configContext'
+import {configType, configStateDefault} from './components/configContext'
+
+// CONSTANTS
+// import { ALPHABET } from './components/constants';
 
 
 function App() {
@@ -40,31 +43,35 @@ function App() {
     )
 }
 
-function initData(setConfig : any, setData : any) {
-    return( async () => {
-        const wordsDico = await fetchWords("./data/french.txt"); // wait till the dictionnary is loaded
-        setConfig({ // initiate the global state hangmanConfig
-            language : "french", 
-            alphabet : ALPHABET, 
-            words : wordsDico,
-            level : 0
-        });
-        let word : string = wordsDico[getRandomInt(0,wordsDico.length)]; // select a word by default
-        setData({ // initiate the global state hangmanData
-            word : word,
-            knowledge : new Array(word.length).fill(true),
-            lives : 5,
-            spaces : word.length,
-            language : 'french'});
-    })
-}
+// function initData(setConfig : any, setData : any) {
+//     return( async () => {
+//         // fetch words from .txt file
+//         let frenchWords = await fetchWords("./data/french.txt"); // wait till the dictionnary is loaded
+//         let englishWords = await fetchWords("./data/english.txt"); // wait till the dictionnary is loaded
+//         // init the config state (in french and level easy)
+//         setConfig({
+//             language : "french", 
+//             alphabet : ALPHABET, 
+//             words : {"french":frenchWords, "english":englishWords},
+//             level : 0
+//         });
+//         // init the data state (with a random french word)
+//         let word : string = frenchWords[getRandomInt(0,frenchWords.length)];
+//         setData({
+//             word : word,
+//             knowledge : new Array(word.length).fill(true),
+//             lives : 5,
+//             spaces : word.length,
+//             language : 'french'});
+//     })
+// }
 
-function fetchWords(filename : any) {
-    return(fetch(filename).then(text => text.text()).then(text => text.split("\n")))
-    // let res = await fetch("./data/french.txt");
-    // let text = await res.text();
-    // let words = text.split("\n")
-    // return(words)
-}
+// function fetchWords(filename : any) {
+//     return(fetch(filename).then(text => text.text()).then(text => text.split("\n")))
+//     // let res = await fetch("./data/french.txt");
+//     // let text = await res.text();
+//     // let words = text.split("\n")
+//     // return(words)
+// }
 
 export default App;
