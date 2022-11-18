@@ -5,9 +5,8 @@ Hangman game :
 
 TODO :
 * fix bug hover keyboard when restarting the game
-* fetch both dataset when starting and not every time the button is clicked !
 * use ... for default attributes !!!
-* add context language
+* create field only for VICTORY/DEFEAT beacuse cannot update the counter !!!
 * add real keyboard action
 * test render of the screen with useEffect and console.log("hey")
 * use let instead of var to declare block scoped variables

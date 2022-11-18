@@ -1,6 +1,6 @@
 // useful functions
 
-import { ALPHABET } from "./constants";
+import {ALPHABET, FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS} from "./constants";
 
 
 export function initData(setConfig : any, setData : any) {
@@ -20,9 +20,10 @@ export function initData(setConfig : any, setData : any) {
       setData({
           word : word,
           knowledge : new Array(word.length).fill(true),
-          lives : 5,
+          lives : LIVES_BY_LEVELS[0],
           spaces : word.length,
-          language : 'french'});
+          language : 'french'
+      });
   })
 }
 
@@ -49,3 +50,29 @@ export function wordFilter(word : string, knowledge : boolean[]) {
     letters.map((elt,index) => (knowledge[index] ? letters[index] : ""))
   return(known_letters)
 }
+
+
+export function updateTextDisplays(language : string, level : number) {
+  let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
+  // title
+  let title = document.getElementById("title");
+  if (title != null)
+    {title.innerHTML = layout.title.toUpperCase()};
+  // restart
+  let restartButton = document.getElementById("restart");
+  if (restartButton != null)
+    {restartButton.innerHTML = layout.restart};
+  // language button
+  let languageButton = document.getElementById("language");
+  if (languageButton != null)
+    {languageButton.innerHTML = layout.language.toUpperCase()};
+  // level button
+  let levelButton = document.getElementById("level");
+  if (levelButton != null)
+    {levelButton.innerHTML = layout.level + " : " + layout.levels[level].toUpperCase()};
+  // about button
+  let aboutButton = document.getElementById("about");
+  if (aboutButton != null)
+    {aboutButton.innerHTML = layout.about};
+  return(null)
+}     

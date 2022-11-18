@@ -30,8 +30,12 @@
   height: 100%;
 }
 
-.toolbar-button{
+.toolbar-button-container{
   margin: 0px 30px;
+}
+
+.toolbar-button{
+  color:black;
 }
 
 /* TIMER */

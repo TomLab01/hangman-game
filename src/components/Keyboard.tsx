@@ -3,6 +3,7 @@ import DataContext from './dataContext'
 import { dataType } from "./dataContext";
 import configContext from './configContext'
 // import { configType } from "./configContext";
+import {FRENCH_LAYOUT, ENGLISH_LAYOUT} from "./constants";
 import './style.css';
 
 
@@ -13,7 +14,7 @@ function Keyboard() {
         <div className="keyboard-container">
             <div className="container">
                 {config.alphabet.map((elt:string) => (
-                    <button className='keyboard-letter' id={'KB-'+elt} key={elt} onClick={keyboardClick(data,setData,config.alphabet,elt)}>
+                    <button className='keyboard-letter' id={'KB-'+elt} key={elt} onClick={keyboardClick(data,setData,config.alphabet,config.language,elt)}>
                         {elt.toUpperCase()}
                     </button>
                 ))}
@@ -26,6 +27,7 @@ function Keyboard() {
 function keyboardClick(data : dataType,
                        setData : any, 
                        alphabet : string[],
+                       language : string,
                        letter : string) : any {
     return(
         () => {
@@ -39,12 +41,16 @@ function keyboardClick(data : dataType,
                 for (var k=0; k<data.word.length; k++) {
                     if (data.word[k] === letter) {data.knowledge[k] = true ; data.spaces -= 1}
                 }
+                // VICTORY
                 if (data.spaces === 0) {
-                    console.log("VICTORY !")
                     for (var i=0; i < alphabet.length; i++) {
-                        const buttonI = document.getElementById("KB-"+alphabet[i]) as HTMLButtonElement;
+                        let buttonI = document.getElementById("KB-"+alphabet[i]) as HTMLButtonElement;
                         if (buttonI != null) {buttonI.disabled = true ; buttonI.style.backgroundColor = "green"}
                     }
+                    let hangmanText = document.getElementById("hangman-text");
+                    let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
+                    if (hangmanText != null) {hangmanText.innerHTML = layout.victory.toUpperCase()}
+                    console.log("VICTORY !")
                 }
             }
             else {
@@ -52,13 +58,17 @@ function keyboardClick(data : dataType,
                     buttonObject.disabled = true;
                     buttonObject.style.backgroundColor = "red";}
                 remainingLives -= 1;
-
+                // DEFEAT
                 if (remainingLives === 0) {
-                    console.log("DEFEAT !")
                     for (var j=0; j < alphabet.length; j++) {
-                        const buttonI = document.getElementById("KB-"+alphabet[j]) as HTMLButtonElement;
+                        let buttonI = document.getElementById("KB-"+alphabet[j]) as HTMLButtonElement;
                         if (buttonI != null) {buttonI.disabled = true ; buttonI.style.backgroundColor = "red"}
                     }
+                    let hangmanText = document.getElementById("hangman-text");
+                    console.log(hangmanText);
+                    // let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
+                    if (hangmanText != null) {hangmanText.innerText = "eezeze" ; console.log("ke,de")} // layout.defeat.toUpperCase()}
+                    console.log("DEFEAT !")
                 };
             }
 

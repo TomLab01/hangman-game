@@ -8,10 +8,8 @@ import App from './App'
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement!);
 
-// const [context, setContext] = useState("default context value");
-
 root.render(
-    <React.StrictMode >
+    // <React.StrictMode >
         <App />
-    </React.StrictMode >
+    // </React.StrictMode >
 );
