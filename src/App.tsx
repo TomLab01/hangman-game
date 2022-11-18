@@ -43,9 +43,19 @@ function App() {
 function initData(setDico : any, setData : any) {
     return( async () => {
         const wordsDico = await fetchWords("./data/french.txt"); // wait till the dictionnary is loaded
-        setDico({language:"french", alphabet:ALPHABET, words:wordsDico}); // initiate the global state DICO
+        setDico({ // initiate the global state DICO
+            language : "french", 
+            alphabet : ALPHABET, 
+            words : wordsDico,
+            level : 0
+        });
         let word : string = wordsDico[getRandomInt(0,wordsDico.length)]; // select a word by default
-        setData({word:word, knowledge:new Array(word.length).fill(true), lives:5, spaces:word.length, language:'french'}); // initiate the global state DATA
+        setData({ // initiate the global state DATA
+            word : word,
+            knowledge : new Array(word.length).fill(true),
+            lives : 5,
+            spaces : word.length,
+            language : 'french'});
     })
 }
 

@@ -4,8 +4,10 @@ Hangman game :
 * french and english
 
 TODO :
-* Hangman PLAY big button page
-* passer language dans le dico state
+* fix bug hover keyboard when restarting the game
+* fetch both dataset when starting and not every time the button is clicked !
+* use ... for default attributes !!!
+* add context language
 * test render of the screen with useEffect and console.log("hey")
 * use let instead of var to declare block scoped variables
 * useContext

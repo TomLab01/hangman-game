@@ -4,6 +4,7 @@ export type hangmanDicoType = {
     language : string, // french - english
     alphabet : string[], // list of characters allowed in the language
     words : string[], // list of words available in the language
+    level : number, // EASY = 0, MIDDLE = 1, DIFFICULT = 2
 };
 
 export type dicoContextType = {
@@ -14,9 +15,10 @@ export type dicoContextType = {
 export const ALPHABET : string[] = 'abcdefghijklmnopqrstuvwxyz'.split("");
 
 export const dicoContextDefault = {
-    dico : {language : "french",
-            alphabet : ALPHABET,
-            words : []},
+    dico : {language : "",
+            alphabet : [""],
+            words : [],
+            level : 0},
     setDico : () => {},
 }
 

@@ -12,8 +12,8 @@ function Keyboard() {
     return (
         <div className="keyboard-container">
             <div className="container">
-                {dico.alphabet.map((elt:string,num:number) => (
-                    <button className='keyboard-letter' id={'KB'+num} key={num} onClick={keyboardClick(data,setData,dico.alphabet,num)}>
+                {dico.alphabet.map((elt:string) => (
+                    <button className='keyboard-letter' id={'KB-'+elt} key={elt} onClick={keyboardClick(data,setData,dico.alphabet,elt)}>
                         {elt.toUpperCase()}
                     </button>
                 ))}
@@ -26,11 +26,10 @@ function Keyboard() {
 function keyboardClick(data : hangmanDataType,
                        setData : any, 
                        alphabet : string[],
-                       num : number) : any {
+                       letter : string) : any {
     return(
         () => {
-            const buttonObject = document.getElementById("KB"+num) as HTMLButtonElement;
-            const letter : string = alphabet[num];
+            const buttonObject = document.getElementById("KB-"+letter) as HTMLButtonElement;
             let remainingLives : number = data.lives;
 
             if (data.word.includes(letter)) {

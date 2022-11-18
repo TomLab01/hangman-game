@@ -19,7 +19,7 @@ function Toolbar() {
               <button id="restart" onClick={restartButton(data,setData,dico)}> Restart </button>
             </div>
             <div className="toolbar-button"> 
-              <button id="level" onClick={() => console.log(data.knowledge)}> Level : Difficult </button>
+              <button id="level" onClick={levelButton(dico,setDico)}> Level : Difficult </button>
             </div>
             <div className="toolbar-button"> 
               <button id="language" onClick={languageButton(data,setData,dico,setDico)}>FRENCH</button> 
@@ -42,17 +42,20 @@ function restartButton(data:hangmanDataType, setData:any, dico:hangmanDicoType) 
       }
       setData({word:newWord, knowledge:new Array(newWord.length).fill(VISIBILITY), lives:10, spaces:newWord.length});
       for (var i=0; i < dico.alphabet.length; i++) {
-          const buttonLetter = document.getElementById("KB"+i) as HTMLButtonElement | null;
+          const buttonLetter = document.getElementById("KB-"+dico.alphabet[i]) as HTMLButtonElement | null;
           if (buttonLetter != null) {buttonLetter.disabled = false ; buttonLetter.style.backgroundColor = "#777"}
       }
     }
   )
 }
 
-function aboutButton() {
+function levelButton(dico:any, setDico:any) {
   return(
     () => {
-      console.log("ABOUT");
+      let newLevel : number = (dico.level + 1) % 3;
+      setDico({...dico, level : newLevel});
+      let buttonLevel = document.getElementById("level");
+      if (buttonLevel != null) {buttonLevel.innerHTML = newLevel.toString()};
     }
   )
 }
@@ -65,12 +68,21 @@ function languageButton(data:hangmanDataType, setData:any, dico:any, setDico:any
       const file = (newLanguage === "french") ? "./data/french.txt" : "./data/english.txt";
       await fetch(file)
             .then(text => text.text())
-            .then(text => setDico({language:newLanguage, 
-                                   alphabet:dico.alphabet, 
-                                   words:text.split("\n")}))
+            .then(text => setDico({language : newLanguage, 
+                                   alphabet : dico.alphabet, 
+                                   words : text.split("\n"),
+                                   level : 0}))
       console.log("Data " + newLanguage.toUpperCase() + " fetched !")
       let buttonLanguage = document.getElementById("language");
       if (buttonLanguage != null) {buttonLanguage.innerHTML = newLanguage.toUpperCase()};
+    }
+  )
+}
+
+function aboutButton() {
+  return(
+    () => {
+      console.log("ABOUT");
     }
   )
 }
