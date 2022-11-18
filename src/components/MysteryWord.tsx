@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import DataContext from './dataContext'
-// import { hangmanDataType } from "./dataContext";
-// import DicoContext from './dicoContext'
-// import { hangmanDicoType } from "./dicoContext";
+import dataContext from './dataContext'
+// import { dataType } from "./dataContext";
+// import configContext from './configContext'
+// import { configType } from "./configContext";
 import { wordFilter } from "./utils";
 import './style.css';
 
@@ -15,7 +15,7 @@ import './style.css';
 // }
 
 function MysteryWord() {
-  const {data} = useContext(DataContext);
+  const {data} = useContext(dataContext);
   let word = data.word;
   let knowledge = data.knowledge;
   let known_letters = wordFilter(word,knowledge);

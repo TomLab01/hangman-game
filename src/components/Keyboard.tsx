@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import DataContext from './dataContext'
-import { hangmanDataType } from "./dataContext";
-import DicoContext from './dicoContext'
-// import { hangmanDicoType } from "./dicoContext";
+import { dataType } from "./dataContext";
+import configContext from './configContext'
+// import { configType } from "./configContext";
 import './style.css';
 
 
 function Keyboard() {
     const {data, setData} = useContext(DataContext);
-    const {dico} = useContext(DicoContext);
+    const {config} = useContext(configContext);
     return (
         <div className="keyboard-container">
             <div className="container">
-                {dico.alphabet.map((elt:string) => (
-                    <button className='keyboard-letter' id={'KB-'+elt} key={elt} onClick={keyboardClick(data,setData,dico.alphabet,elt)}>
+                {config.alphabet.map((elt:string) => (
+                    <button className='keyboard-letter' id={'KB-'+elt} key={elt} onClick={keyboardClick(data,setData,config.alphabet,elt)}>
                         {elt.toUpperCase()}
                     </button>
                 ))}
@@ -23,7 +23,7 @@ function Keyboard() {
   );
 }
  
-function keyboardClick(data : hangmanDataType,
+function keyboardClick(data : dataType,
                        setData : any, 
                        alphabet : string[],
                        letter : string) : any {
@@ -42,7 +42,7 @@ function keyboardClick(data : hangmanDataType,
                 if (data.spaces === 0) {
                     console.log("VICTORY !")
                     for (var i=0; i < alphabet.length; i++) {
-                        const buttonI = document.getElementById("KB"+i) as HTMLButtonElement;
+                        const buttonI = document.getElementById("KB-"+alphabet[i]) as HTMLButtonElement;
                         if (buttonI != null) {buttonI.disabled = true ; buttonI.style.backgroundColor = "green"}
                     }
                 }
@@ -56,7 +56,7 @@ function keyboardClick(data : hangmanDataType,
                 if (remainingLives === 0) {
                     console.log("DEFEAT !")
                     for (var j=0; j < alphabet.length; j++) {
-                        const buttonI = document.getElementById('KB'+j) as HTMLButtonElement;
+                        const buttonI = document.getElementById("KB-"+alphabet[j]) as HTMLButtonElement;
                         if (buttonI != null) {buttonI.disabled = true ; buttonI.style.backgroundColor = "red"}
                     }
                 };

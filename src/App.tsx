@@ -11,24 +11,24 @@ import './index.css';
 
 // TYPES & CONTEXTS
 import DataContext from './components/dataContext'
-import {hangmanDataType, dataContextDefault} from './components/dataContext'
-import DicoContext from './components/dicoContext'
-import {hangmanDicoType, dicoContextDefault, ALPHABET} from './components/dicoContext'
+import {dataType, dataStateDefault} from './components/dataContext'
+import DicoContext from './components/configContext'
+import {configType, configStateDefault, ALPHABET} from './components/configContext'
 
 
 function App() {
 
-    const [hangmanData, setHangmanData] = useState<hangmanDataType>(dataContextDefault.data);
+    const [hangmanData, setHangmanData] = useState<dataType>(dataStateDefault.data);
 
-    const [hangmanDico, setHangmanDico] = useState<hangmanDicoType>(dicoContextDefault.dico);
+    const [hangmanConfig, setHangmanConfig] = useState<configType>(configStateDefault.config);
 
     useLayoutEffect(() => {
-        initData(setHangmanDico,setHangmanData)();
+        initData(setHangmanConfig,setHangmanData)();
         console.log("Data FRENCH fetched !")
     }, []); // [] indicates that there are no dependencies to this useEffect (only run once at the begining)
 
     return(
-        <DicoContext.Provider value={{dico:hangmanDico, setDico:setHangmanDico}}>
+        <DicoContext.Provider value={{config:hangmanConfig, setConfig:setHangmanConfig}}>
             <DataContext.Provider value={{data:hangmanData, setData:setHangmanData}}>
                 <Header />
                 <Toolbar />
@@ -40,17 +40,17 @@ function App() {
     )
 }
 
-function initData(setDico : any, setData : any) {
+function initData(setConfig : any, setData : any) {
     return( async () => {
         const wordsDico = await fetchWords("./data/french.txt"); // wait till the dictionnary is loaded
-        setDico({ // initiate the global state DICO
+        setConfig({ // initiate the global state hangmanConfig
             language : "french", 
             alphabet : ALPHABET, 
             words : wordsDico,
             level : 0
         });
         let word : string = wordsDico[getRandomInt(0,wordsDico.length)]; // select a word by default
-        setData({ // initiate the global state DATA
+        setData({ // initiate the global state hangmanData
             word : word,
             knowledge : new Array(word.length).fill(true),
             lives : 5,
