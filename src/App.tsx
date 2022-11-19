@@ -38,6 +38,9 @@ function App() {
                 <HangmanPicture />
                 <MysteryWord />
                 <Keyboard />
+                <div id="copyright">
+                    <div>Tom Labiausse &copy; 2022</div>
+                </div>
             </DataContext.Provider>
         </DicoContext.Provider>
     )

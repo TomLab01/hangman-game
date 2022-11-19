@@ -36,7 +36,7 @@ function keyboardClick(data : dataType,
             let remainingSpaces : number = data.spaces;
 
             if (data.word.includes(letter)) {
-                if (letterButton != null) {letterButton.disabled = true ; letterButton.style.backgroundColor = "green"}
+                if (letterButton != null) {letterButton.disabled = true ; letterButton.style.backgroundColor = "rgb(94, 203, 136)"}
                 // update the state data
                 for (let k=0; k<data.word.length; k++) {
                     if (data.word[k] === letter) {data.knowledge[k] = true ; remainingSpaces -= 1}
@@ -45,14 +45,14 @@ function keyboardClick(data : dataType,
                 if (remainingSpaces === 0) {
                     for (let i=0; i < alphabet.length; i++) {
                         let buttonX = document.getElementById("KB-"+alphabet[i]) as HTMLButtonElement;
-                        if (buttonX != null) {buttonX.disabled = true ; buttonX.style.backgroundColor = "green"}
+                        if (buttonX != null) {buttonX.disabled = true ; buttonX.style.backgroundColor = "rgb(94, 203, 136)"}
                     }
                     let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
                     console.log(layout.victory.toUpperCase())
                 }
             }
             else {
-                if (letterButton != null) {letterButton.disabled = true ; letterButton.style.backgroundColor = "red"}
+                if (letterButton != null) {letterButton.disabled = true ; letterButton.style.backgroundColor = "red";}
                 // update the state data
                 remainingLives -= 1;
                 // if DEFEAT

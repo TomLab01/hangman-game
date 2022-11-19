@@ -1,6 +1,6 @@
 // useful functions
 
-import {ALPHABET, FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS} from "./constants";
+import {ALPHABET, FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS, VISIBILITY} from "./constants";
 
 
 export function initData(setConfig : any, setData : any) {
@@ -19,7 +19,7 @@ export function initData(setConfig : any, setData : any) {
       let word : string = frenchWords[getRandomInt(0,frenchWords.length)];
       setData({
           word : word,
-          knowledge : new Array(word.length).fill(true),
+          knowledge : new Array(word.length).fill(VISIBILITY),
           lives : LIVES_BY_LEVELS[0],
           spaces : word.length,
           language : 'french'

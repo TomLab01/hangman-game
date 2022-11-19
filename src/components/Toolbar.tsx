@@ -4,17 +4,15 @@ import { dataType } from "./dataContext";
 import configContext from './configContext'
 import { configType } from "./configContext";
 import {getRandomInt, updateTextDisplays} from "./utils";
-import {FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS} from "./constants";
+import {FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS, VISIBILITY} from "./constants";
 import './style.css';
 
-const VISIBILITY = true;
 
 function Toolbar() {
   const {data, setData} = useContext(DataContext);
   const {config, setConfig} = useContext(configContext);
   return (
     <div className="toolbar-container">
-        <div className="container">
             <div className="toolbar-button-container"> 
               <button id="restart" className="toolbar-button" onClick={restartButton(data,setData,config)}> Restart </button>
             </div>
@@ -27,7 +25,6 @@ function Toolbar() {
             <div className="toolbar-button-container" onClick={aboutButton()}> 
               <button id="about" className="toolbar-button">About</button> 
             </div>
-        </div>
     </div>
 
   );

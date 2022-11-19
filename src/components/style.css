@@ -11,38 +11,51 @@
   justify-content: space-around;
   align-items: center;
   height: 50px;
-  margin-top: 1em;
+  margin: 2em 0em;
 }
 
 h1 {
   font-family: 'american typewriter';
-  font-size: 4em;
+  font-size: 5em;
+}
+
+h1:hover{
+  transition: 2s;
+  color:red;
 }
 
 /* TOOLBAR */
 
 .toolbar-container{
-  /* background-color: rgb(99, 190, 204); */
-  color:black;
-  margin: 20px 0px;
-}
-
-.toolbar-container .container{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  flex-wrap: wrap;
+  margin: 40px 0px;
 }
 
 .toolbar-button-container{
-  margin: 0px 30px;
+  margin: 10px 30px;
 }
 
 .toolbar-button{
+  background-color: rgb(203, 160, 19);
   color:black;
+  font-size: 2em;
+  font-family: 'american typewriter';
+  font-weight: bold;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 20px;
+  transition: transform 0.8s ease-in-out;
 }
 
-/* TIMER */
+.toolbar-button:hover{
+  transition: 0.4s;
+  background-color: rgb(94, 203, 136);
+  cursor: pointer;
+  transform: scale(1.2);
+}
 
 
 /* HANGMAN */
@@ -52,29 +65,37 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  /* background-color: rgb(24, 218, 221); */
-  height: 300px;
-  width: 75%;
+  height: 155px;
   border: None;
   margin: 20px auto;
 }
 
 .heart-icon {
+  transition: transform 0.3s ease-in-out;
   width: 90px;
   height: 90px;
 }
 
+.heart-icon:hover{
+  transform: scale(1.5) translate(0%,-40%);
+}
+
 #hangman-text-defeat{
   color: red;
+  font-family: "american typewriter";
   font-weight: bold;
-  font-size: 4em;
+  font-size: 8em;
+  margin: 0px;
 }
 
 #hangman-text-victory{
-  color: red;
+  color: rgb(94, 203, 136);
+  font-family: "american typewriter";
   font-weight: bold;
-  font-size: 4em;
+  font-size: 8em;
+  margin: 0px;
 }
+
 
 /* WORD PANEL */
 
@@ -95,13 +116,22 @@ h1 {
 .word-letter{
   background-color: #eee;
   color:black;
-  font-size: 3em;
-  width:70px;
-  height: 70px;
+  font-family: 'american typewriter';
+  font-size: 5em;
+  font-weight: bold;
+  width:90px;
+  height: 90px;
   margin: 5px;
   text-align: center;
-  line-height: 80px;
+  line-height: 90px;
   border-radius: 25px;
+  transition: transform 1s ease-in-out;
+}
+
+.word-letter:hover{
+  transform: scale(1.5);
+  background-color: rgb(94, 203, 136);
+  transition: 1s;
 }
 
 /* KEYBOARD */
@@ -125,56 +155,48 @@ h1 {
 }
 
 .keyboard-letter{
-  background-color: #777;
-  color:white;
-  font-size: 2em;
+  background-color: #666;
+  color: white;
+  font-family: 'american typewriter';
+  font-size: 3em;
   border : none;
   width:70px;
   height: 70px;
   margin: 5px;
   text-align: center;
   border-radius: 15px;
+  transition: transform 1s ease-in-out;
 }
 
 .keyboard-letter:hover{
-  background-color: red;
+  background-color: rgb(203, 160, 19);
   cursor: pointer;
 }
 
 .keyboard-letter:active{
-  transition: 0ms;
-  background-color: green;
+  transition: 0s;
+  transform: rotate(1turn);
   cursor:pointer;
 }
-
-/* visibility : hidden */
 
 
 /* RESIZE EFFECTS */
 
 @media (max-width: 515px) {
-
-  .toolbar-container .container{
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .toolbar-button{
-    margin : 10px;
-  }
-
-  h1{
-    font-size: 3em;
-  }
-
-  .heart-icon{
-    height: 70px;
-    width: 70px;
-  }
+  .toolbar-container{margin : 40px 0px 0px 0px}
+  .toolbar-button{margin : 10px}
+  h1{font-size: 4.5em}
+  .heart-icon{height: 75px ; width: 75px}
 }
 
 @media (max-width: 750px) {
-  .keyboard-container .container{
-    width : 90%;
-  }
+  .keyboard-container .container{width : 90%}
+}
+
+
+/* COPYRIGHT*/
+
+#copyright{
+  display: flex;
+  justify-content: center;
 }

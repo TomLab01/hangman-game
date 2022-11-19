@@ -2,10 +2,10 @@ export const ALPHABET : string[] = 'abcdefghijklmnopqrstuvwxyz'.split("");
 
 export const FRENCH_LAYOUT : any = {
     language : "french",
-    restart : "nouveau",
-    level : "niveau",
+    restart : "Nouveau",
+    level : "Niveau",
     levels : ["facile","moyen","difficile"],
-    about : "a propos",
+    about : "A propos",
     title : "le pendu",
     victory : "victoire !",
     defeat : "perdu"
@@ -13,13 +13,15 @@ export const FRENCH_LAYOUT : any = {
 
 export const ENGLISH_LAYOUT : any = {
     language : "english",
-    restart : "restart",
-    level : "level",
+    restart : "Restart",
+    level : "Level",
     levels : ["easy","middle","difficult"],
-    about : "about",
+    about : "About",
     title : "hangman",
     victory : "victory !",
     defeat : "game over"
 }
 
 export const LIVES_BY_LEVELS : number[] = [10,7,4];
+
+export const VISIBILITY : boolean = false; // dev tool const
