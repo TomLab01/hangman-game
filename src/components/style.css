@@ -11,14 +11,18 @@
   justify-content: space-around;
   align-items: center;
   height: 50px;
-  background-color: rgb(224, 164, 12);
-  color:black;
+  margin-top: 1em;
+}
+
+h1 {
+  font-family: 'american typewriter';
+  font-size: 4em;
 }
 
 /* TOOLBAR */
 
 .toolbar-container{
-  background-color: rgb(99, 190, 204);
+  /* background-color: rgb(99, 190, 204); */
   color:black;
   margin: 20px 0px;
 }
@@ -47,27 +51,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(24, 218, 221);
-  width: 300px;
+  flex-wrap: wrap;
+  /* background-color: rgb(24, 218, 221); */
   height: 300px;
-  border-color: black;
-  border-radius: 150px;
-  border-style: solid;
+  width: 75%;
+  border: None;
   margin: 20px auto;
 }
 
-.hangman-container h1{
+.heart-icon {
+  width: 90px;
+  height: 90px;
+}
+
+#hangman-text-defeat{
   color: red;
   font-weight: bold;
-  font-size: 5em;
-  text-align: center;
-  padding-right : 10px;
+  font-size: 4em;
+}
+
+#hangman-text-victory{
+  color: red;
+  font-weight: bold;
+  font-size: 4em;
 }
 
 /* WORD PANEL */
 
 .word-container{
-  background-color: rgb(137, 203, 14);
+  /* background-color: rgb(137, 203, 14); */
   color:black;
   margin: 20px;
 }
@@ -95,7 +107,7 @@
 /* KEYBOARD */
 
 .keyboard-container{
-  background-color: rgb(199, 50, 179);
+  /* background-color: rgb(199, 50, 179); */
   color:black;
 }
 
@@ -104,7 +116,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-color: yellow;
+  /* background-color: yellow; */
   margin-left:auto;
   margin-right:auto;
   height: 100%;
@@ -149,6 +161,15 @@
 
   .toolbar-button{
     margin : 10px;
+  }
+
+  h1{
+    font-size: 3em;
+  }
+
+  .heart-icon{
+    height: 70px;
+    width: 70px;
   }
 }
 

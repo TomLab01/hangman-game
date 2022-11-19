@@ -1,5 +1,9 @@
 body {
-  margin: 0;
+  margin: 10px;
   font-family: 'Roboto', sans-serif;
-  background-color: #ddd;
+  background-color: #000;
+  background-image: url('../public/images/western_background_resized.jpg');
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }

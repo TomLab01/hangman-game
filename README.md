@@ -1,12 +1,12 @@
 # README
 
 Hangman game :
-* french and english
+* french and english available
 
 TODO :
 * fix bug hover keyboard when restarting the game
 * use ... for default attributes !!!
-* create field only for VICTORY/DEFEAT beacuse cannot update the counter !!!
+* create field only for VICTORY/DEFEAT beacuse cannot update the counter !!! but working for VICTORY !!!.....
 * add real keyboard action
 * test render of the screen with useEffect and console.log("hey")
 * use let instead of var to declare block scoped variables

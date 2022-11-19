@@ -31,48 +31,42 @@ function keyboardClick(data : dataType,
                        letter : string) : any {
     return(
         () => {
-            const buttonObject = document.getElementById("KB-"+letter) as HTMLButtonElement;
+            const letterButton = document.getElementById("KB-"+letter) as HTMLButtonElement;
             let remainingLives : number = data.lives;
+            let remainingSpaces : number = data.spaces;
 
             if (data.word.includes(letter)) {
-                if (buttonObject != null) {
-                    buttonObject.disabled = true;
-                    buttonObject.style.backgroundColor = "green";}
-                for (var k=0; k<data.word.length; k++) {
-                    if (data.word[k] === letter) {data.knowledge[k] = true ; data.spaces -= 1}
+                if (letterButton != null) {letterButton.disabled = true ; letterButton.style.backgroundColor = "green"}
+                // update the state data
+                for (let k=0; k<data.word.length; k++) {
+                    if (data.word[k] === letter) {data.knowledge[k] = true ; remainingSpaces -= 1}
                 }
-                // VICTORY
-                if (data.spaces === 0) {
-                    for (var i=0; i < alphabet.length; i++) {
-                        let buttonI = document.getElementById("KB-"+alphabet[i]) as HTMLButtonElement;
-                        if (buttonI != null) {buttonI.disabled = true ; buttonI.style.backgroundColor = "green"}
+                // if VICTORY
+                if (remainingSpaces === 0) {
+                    for (let i=0; i < alphabet.length; i++) {
+                        let buttonX = document.getElementById("KB-"+alphabet[i]) as HTMLButtonElement;
+                        if (buttonX != null) {buttonX.disabled = true ; buttonX.style.backgroundColor = "green"}
                     }
-                    let hangmanText = document.getElementById("hangman-text");
                     let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
-                    if (hangmanText != null) {hangmanText.innerHTML = layout.victory.toUpperCase()}
-                    console.log("VICTORY !")
+                    console.log(layout.victory.toUpperCase())
                 }
             }
             else {
-                if (buttonObject != null) {
-                    buttonObject.disabled = true;
-                    buttonObject.style.backgroundColor = "red";}
+                if (letterButton != null) {letterButton.disabled = true ; letterButton.style.backgroundColor = "red"}
+                // update the state data
                 remainingLives -= 1;
-                // DEFEAT
+                // if DEFEAT
                 if (remainingLives === 0) {
-                    for (var j=0; j < alphabet.length; j++) {
-                        let buttonI = document.getElementById("KB-"+alphabet[j]) as HTMLButtonElement;
-                        if (buttonI != null) {buttonI.disabled = true ; buttonI.style.backgroundColor = "red"}
+                    for (let j=0; j < alphabet.length; j++) {
+                        let buttonX = document.getElementById("KB-"+alphabet[j]) as HTMLButtonElement;
+                        if (buttonX != null) {buttonX.disabled = true ; buttonX.style.backgroundColor = "red"}
                     }
-                    let hangmanText = document.getElementById("hangman-text");
-                    console.log(hangmanText);
-                    // let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
-                    if (hangmanText != null) {hangmanText.innerText = "eezeze" ; console.log("ke,de")} // layout.defeat.toUpperCase()}
-                    console.log("DEFEAT !")
+                    let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
+                    console.log(layout.defeat.toUpperCase())
                 };
             }
 
-            setData({word:data.word, knowledge:data.knowledge, lives:remainingLives, spaces:data.spaces});
+            setData({...data, lives:remainingLives, spaces:remainingSpaces});
         }
     )
 }
