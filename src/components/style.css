@@ -128,11 +128,6 @@ h1:hover{
   transition: transform 1s ease-in-out;
 }
 
-.word-letter:hover{
-  transform: scale(1.5);
-  background-color: rgb(94, 203, 136);
-  transition: 1s;
-}
 
 /* KEYBOARD */
 

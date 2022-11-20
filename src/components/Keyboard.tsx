@@ -13,7 +13,7 @@ function Keyboard() {
     return (
         <div className="keyboard-container">
             <div className="container">
-                {config.alphabet.map((elt:string) => (
+                {config.alphabet.map((elt:string,iii:number) => (
                     <button className='keyboard-letter' id={'KB-'+elt} key={elt} onClick={keyboardClick(data,setData,config.alphabet,config.language,elt)}>
                         {elt.toUpperCase()}
                     </button>

@@ -1,16 +1,18 @@
 # README
 
-Hangman game :
-* french and english available
+**Author : Tom LABIAUSSE**
 
-TODO :
-* fix bug hover keyboard when restarting the game
-* use ... for default attributes !!!
-* use let instead of var to declare block scoped variables !!!
+**Date : 2022**
+
+## Hangman game :
+* Almost **1K words** available in both french and english !
+
+## TODO :
 * add real keyboard action
-* useRef to access DOM elements
 * push on my github (after cleaning the README and adding a .gitignore)
 
-
+## Further improvments :
 * media phone format -> no height for heart container !
-* icon page and title
+* don't access DOM elements with queries but rather with useRef...
+
+> *Press COMMAND + Shift + V to see this README in markdown preview*

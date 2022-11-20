@@ -48,7 +48,10 @@ function restartButton(data:dataType, setData:any, config:configType) : any {
       // clean keyboard buttons
       for (let i=0; i < config.alphabet.length; i++) {
           const buttonLetter = document.getElementById("KB-"+config.alphabet[i]) as HTMLButtonElement | null;
-          if (buttonLetter != null) {buttonLetter.disabled = false ; buttonLetter.style.backgroundColor = "#777"}
+          if (buttonLetter != null) {
+            buttonLetter.disabled = false ; 
+            buttonLetter.style.removeProperty("background-color") // remove inline CSS => goes back to its original style.css color
+          }
       }
       if (VERBOSE) {console.log("Restart the game")};
     }
