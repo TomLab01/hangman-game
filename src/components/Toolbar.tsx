@@ -4,7 +4,7 @@ import { dataType } from "./dataContext";
 import configContext from './configContext'
 import { configType } from "./configContext";
 import {getRandomInt, updateTextDisplays} from "./utils";
-import {FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS, VISIBILITY} from "./constants";
+import {FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS, VISIBILITY, VERBOSE} from "./constants";
 import './style.css';
 
 
@@ -14,16 +14,16 @@ function Toolbar() {
   return (
     <div className="toolbar-container">
             <div className="toolbar-button-container"> 
-              <button id="restart" className="toolbar-button" onClick={restartButton(data,setData,config)}> Restart </button>
+              <button id="restart" className="toolbar-button" onClick={restartButton(data,setData,config)}></button>
             </div>
             <div className="toolbar-button-container"> 
-              <button id="level" className="toolbar-button" onClick={levelButton(config,setConfig)}> Level : Difficult </button>
+              <button id="level" className="toolbar-button" onClick={levelButton(config,setConfig)}></button>
             </div>
             <div className="toolbar-button-container"> 
-              <button id="language" className="toolbar-button" onClick={languageButton(data,setData,config,setConfig)}>FRENCH</button> 
+              <button id="language" className="toolbar-button" onClick={languageButton(data,setData,config,setConfig)}></button> 
             </div>
             <div className="toolbar-button-container" onClick={aboutButton()}> 
-              <button id="about" className="toolbar-button">About</button> 
+              <button id="about" className="toolbar-button"></button> 
             </div>
     </div>
 
@@ -46,11 +46,11 @@ function restartButton(data:dataType, setData:any, config:configType) : any {
         lives : LIVES_BY_LEVELS[config.level],
         spaces : newWord.length});
       // clean keyboard buttons
-      for (var i=0; i < config.alphabet.length; i++) {
+      for (let i=0; i < config.alphabet.length; i++) {
           const buttonLetter = document.getElementById("KB-"+config.alphabet[i]) as HTMLButtonElement | null;
           if (buttonLetter != null) {buttonLetter.disabled = false ; buttonLetter.style.backgroundColor = "#777"}
       }
-      console.log("Restart the game")
+      if (VERBOSE) {console.log("Restart the game")};
     }
   )
 }
@@ -67,7 +67,7 @@ function levelButton(config:any, setConfig:any) {
       let levelName = layout.levels[newLevel].toUpperCase();
       if (levelButton != null)
         {levelButton.innerHTML = layout.level + " : " + levelName};
-      console.log("Set level to " + levelName)
+        if (VERBOSE) {console.log("Set level to " + levelName)};
     }
   )
 }
@@ -79,7 +79,7 @@ function languageButton(data:dataType, setData:any, config:any, setConfig:any) {
       setConfig({...config, language:newLanguage})
       // update all buttons and text displays
       updateTextDisplays(newLanguage,config.level);
-      console.log("Switch to " + newLanguage.toUpperCase())
+      if (VERBOSE) {console.log("Switch to " + newLanguage.toUpperCase())};
     }
   )
 }
@@ -87,7 +87,7 @@ function languageButton(data:dataType, setData:any, config:any, setConfig:any) {
 function aboutButton() {
   return(
     () => {
-      console.log("About");
+      if (VERBOSE) {console.log("About")};
     }
   )
 }

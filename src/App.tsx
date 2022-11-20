@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import {useLayoutEffect, useState} from 'react';
 
 // COMPONENTS & STYLE
 import Header from './components/Header';
@@ -16,7 +16,7 @@ import DicoContext from './components/configContext'
 import {configType, configStateDefault} from './components/configContext'
 
 // CONSTANTS
-// import { ALPHABET } from './components/constants';
+import { VERBOSE } from './components/constants';
 
 function App() {
 
@@ -26,7 +26,7 @@ function App() {
 
     useLayoutEffect(() => {
         initData(setHangmanConfig,setHangmanData)();
-        console.log("Data FRENCH fetched !")
+        if (VERBOSE) {console.log("Data FRENCH fetched !")};
         updateTextDisplays("french",0);
     }, []); // [] indicates that there are no dependencies to this useEffect (only run once at the begining)
 

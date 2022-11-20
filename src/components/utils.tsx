@@ -46,8 +46,7 @@ export function getRandomInt(min : number, max : number) { // random integer in 
 
 export function wordFilter(word : string, knowledge : boolean[]) {
   const letters : String[] = word.toUpperCase().split("");
-  let known_letters : String[] = 
-    letters.map((elt,index) => (knowledge[index] ? letters[index] : ""))
+  let known_letters : String[] = letters.map((elt,index) => (knowledge[index] ? letters[index] : ""))
   return(known_letters)
 }
 
@@ -55,9 +54,8 @@ export function wordFilter(word : string, knowledge : boolean[]) {
 export function updateTextDisplays(language : string, level : number) {
   let layout = (language === "french") ? FRENCH_LAYOUT : ENGLISH_LAYOUT;
   // title
-  let title = document.getElementById("title");
-  if (title != null)
-    {title.innerHTML = layout.title.toUpperCase()};
+  let title = document.getElementsByClassName("title");
+  for (let item of title) {item.innerHTML = layout.title.toUpperCase();}
   // restart
   let restartButton = document.getElementById("restart");
   if (restartButton != null)

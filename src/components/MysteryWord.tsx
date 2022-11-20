@@ -16,9 +16,7 @@ import './style.css';
 
 function MysteryWord() {
   const {data} = useContext(dataContext);
-  let word = data.word;
-  let knowledge = data.knowledge;
-  let known_letters = wordFilter(word,knowledge);
+  let known_letters = wordFilter(data.word,data.knowledge);
   return (
     <div className="word-container">
         <div className="container">
