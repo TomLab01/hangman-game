@@ -25,7 +25,7 @@ function Keyboard() {
 }
  
 function keyboardClick(data : dataType,
-                       setData : any, 
+                       setData : (value:dataType)=>void, 
                        alphabet : string[],
                        language : string,
                        letter : string) : any {

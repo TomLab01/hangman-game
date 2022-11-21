@@ -1,9 +1,11 @@
 // useful functions
+import { configType } from "./configContext";
+import { dataType } from "./dataContext";
 
 import {ALPHABET, FRENCH_LAYOUT, ENGLISH_LAYOUT, LIVES_BY_LEVELS, VISIBILITY} from "./constants";
 
 
-export function initData(setConfig : any, setData : any) {
+export function initData(setConfig : (value:configType)=>void, setData : (value:dataType)=>void) {
   return( async () => {
       // fetch words from .txt file
       let frenchWords = await fetchWords("./data/french.txt"); // wait till the dictionnary is loaded
@@ -22,7 +24,6 @@ export function initData(setConfig : any, setData : any) {
           knowledge : new Array(word.length).fill(VISIBILITY),
           lives : LIVES_BY_LEVELS[0],
           spaces : word.length,
-          language : 'french'
       });
   })
 }

@@ -20,7 +20,7 @@ function Toolbar() {
               <button id="level" className="toolbar-button" onClick={levelButton(config,setConfig)}></button>
             </div>
             <div className="toolbar-button-container"> 
-              <button id="language" className="toolbar-button" onClick={languageButton(data,setData,config,setConfig)}></button> 
+              <button id="language" className="toolbar-button" onClick={languageButton(config,setConfig)}></button> 
             </div>
             <div className="toolbar-button-container" onClick={aboutButton()}> 
               <button id="about" className="toolbar-button"></button> 
@@ -30,7 +30,7 @@ function Toolbar() {
   );
 }
 
-function restartButton(data:dataType, setData:any, config:configType) : any {
+function restartButton(data:dataType, setData:(value:dataType)=>void, config:configType) : any {
   return(
     () => {
       // randomly select a new word
@@ -58,7 +58,7 @@ function restartButton(data:dataType, setData:any, config:configType) : any {
   )
 }
 
-function levelButton(config:any, setConfig:any) {
+function levelButton(config:configType, setConfig:(value:configType)=>void) {
   return(
     () => {
       // update the game level
@@ -75,7 +75,7 @@ function levelButton(config:any, setConfig:any) {
   )
 }
 
-function languageButton(data:dataType, setData:any, config:any, setConfig:any) {
+function languageButton(config:configType, setConfig:(value:configType)=>void) {
   return(() => {
       // update the config state
       const newLanguage = (config.language === "french") ? "english" : "french";

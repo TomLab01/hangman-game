@@ -9,7 +9,7 @@ export type configType = {
 
 export type configStateType = {
     config : configType,
-    setConfig : any,
+    setConfig : (value:configType)=>void,
 };
 
 export const configStateDefault = {

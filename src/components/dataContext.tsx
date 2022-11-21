@@ -9,7 +9,7 @@ export type dataType = {
 
 export type dataStateType = {
     data : dataType,
-    setData : any,
+    setData : (value:dataType)=>void,
 };
 
 export const dataStateDefault = {
