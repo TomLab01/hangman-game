@@ -1,5 +1,11 @@
 import React from 'react';
 
+enum hangmanLevelType {
+    easy = 0,
+    middle = 1,
+    difficult = 2,
+}
+
 export type configType = {
     language : string, // french - english
     alphabet : string[], // list of characters allowed in the language

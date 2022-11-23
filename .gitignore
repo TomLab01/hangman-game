@@ -19,6 +19,7 @@
 .env.test.local
 .env.production.local
 .ipynb_checkpoints
+.vscode/
 
 # misc perso
 words_processing.ipynb

@@ -9,8 +9,10 @@
 
 ## TODO :
 * change app name
+* use enum to type the possible levels of the game
 * add real keyboard action
 * display mystery word in red or green when victory or defeat !
+* rename files with js only as .ts and not .tsx !
 * change function on click with upstream () => ...
 * useQuery ti fetch data
 * push on my github (after cleaning the README and adding a .gitignore)
