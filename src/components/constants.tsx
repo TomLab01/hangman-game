@@ -24,6 +24,6 @@ export const ENGLISH_LAYOUT: any = {
 
 export const LIVES_BY_LEVELS: number[] = [10, 7, 4]; // nb of heart/allowed errors for each level
 
-export const VISIBILITY: boolean = false; // dev tool const
+export const VISIBILITY: boolean = true; // dev tool const
 
 export const VERBOSE: boolean = false; // dev tool const

@@ -14,7 +14,7 @@
 * display mystery word in red or green when victory or defeat !
 * rename files with js only as .ts and not .tsx !
 * change function on click with upstream () => ...
-* useQuery ti fetch data
+* useQuery to fetch data
 * push on my github (after cleaning the README and adding a .gitignore)
 * track re-rendering with console.log in each component and try useMemo !
 

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import DataContext from './dataContext'
 import { dataType } from "./dataContext";
 import configContext from './configContext'
@@ -7,17 +7,27 @@ import { FRENCH_LAYOUT, ENGLISH_LAYOUT } from "./constants";
 import './style.css';
 
 
-function Keyboard() {
+function KeyboardLetter(props: any): JSX.Element {
+    let letter: string = props.letter;
     const { data, setData } = useContext(DataContext);
+    const { config } = useContext(configContext);
+    return (
+        <button
+            className='keyboard-letter'
+            id={'KB-' + letter}
+            key={letter}
+            onClick={keyboardClick(data, setData, config.alphabet, config.language, letter)}>
+            {letter.toUpperCase()}
+        </button>
+    );
+}
+
+function Keyboard() {
     const { config } = useContext(configContext);
     return (
         <div className="keyboard-container">
             <div className="container">
-                {config.alphabet.map((elt: string, iii: number) => (
-                    <button className='keyboard-letter' id={'KB-' + elt} key={elt} onClick={keyboardClick(data, setData, config.alphabet, config.language, elt)}>
-                        {elt.toUpperCase()}
-                    </button>
-                ))}
+                {config.alphabet.map((elt: string) => (<KeyboardLetter letter={elt} />))}
             </div>
         </div>
 
