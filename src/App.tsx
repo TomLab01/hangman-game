@@ -6,7 +6,7 @@ import HangmanPicture from './components/HangmanPicture';
 import Toolbar from './components/Toolbar';
 import MysteryWord from './components/MysteryWord'
 import Keyboard from './components/Keyboard'
-import { initData, updateTextDisplays } from './components/utils';
+import { initData } from './components/utils';
 import './index.css';
 
 // TYPES & CONTEXTS
@@ -19,7 +19,6 @@ import { configType, configStateDefault } from './components/configContext'
 import { VERBOSE } from './components/constants';
 
 function App() {
-
     const [hangmanData, setHangmanData] = useState<dataType>(dataStateDefault.data);
 
     const [hangmanConfig, setHangmanConfig] = useState<configType>(configStateDefault.config);
@@ -27,7 +26,6 @@ function App() {
     useLayoutEffect(() => {
         initData(setHangmanConfig, setHangmanData)();
         if (VERBOSE) { console.log("Data FRENCH fetched !") };
-        updateTextDisplays("french", 0);
     }, []); // [] indicates that there are no dependencies to this useEffect (only run once at the begining)
 
     return (

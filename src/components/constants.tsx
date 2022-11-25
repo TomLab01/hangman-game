@@ -1,6 +1,17 @@
 export const ALPHABET: string[] = 'abcdefghijklmnopqrstuvwxyz'.split("");
 
-export const FRENCH_LAYOUT: any = {
+export type keywordsType = {
+    language: string
+    restart: string
+    level: string
+    levels: string[]
+    about: string
+    title: string
+    victory: string
+    defeat: string
+}
+
+export const FRENCH_KEYWORDS: keywordsType = {
     language: "french",
     restart: "Nouveau",
     level: "Niveau",
@@ -11,7 +22,7 @@ export const FRENCH_LAYOUT: any = {
     defeat: "perdu"
 }
 
-export const ENGLISH_LAYOUT: any = {
+export const ENGLISH_KEYWORDS: keywordsType = {
     language: "english",
     restart: "Restart",
     level: "Level",
@@ -26,4 +37,4 @@ export const LIVES_BY_LEVELS: number[] = [10, 7, 4]; // nb of heart/allowed erro
 
 export const VISIBILITY: boolean = true; // dev tool const
 
-export const VERBOSE: boolean = false; // dev tool const
+export const VERBOSE: boolean = true; // dev tool const

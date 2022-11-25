@@ -1,10 +1,10 @@
 import React from 'react';
 
 export type dataType = {
-    word: string,
-    knowledge: boolean[], // indicate which letters of the word are known/unknown
-    lives: number, // number of allowed errors 
-    spaces: number, // number of spaces/letters yet to be discovered : goes from word.length to 0
+    word: string
+    knowledge: boolean[] // indicate which letters of the word are known/unknown
+    lives: number // number of allowed errors 
+    spaces: number // number of spaces/letters yet to be discovered : goes from word.length to 0
 };
 
 export type dataStateType = {
