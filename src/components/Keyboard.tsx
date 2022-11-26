@@ -3,7 +3,7 @@ import DataContext from './dataContext'
 import { dataType } from "./dataContext";
 import configContext from './configContext'
 import { configType } from "./configContext";
-import { VERBOSE } from "./constants";
+import { GREEN, RED, VERBOSE } from "./constants";
 import './style.css';
 
 interface Iletter {
@@ -38,40 +38,47 @@ function KeyboardLetter({ letter }: Iletter): JSX.Element {
 
 function keyboardClick(data: dataType, setData: (value: dataType) => void, config: configType, letter: string): any {
     const letterButton = document.getElementById("KB-" + letter) as HTMLButtonElement;
-    let remainingLives: number = data.lives;
-    let remainingSpaces: number = data.spaces;
+    // let remainingLives: number = data.lives;
+    // let remainingSpaces: number = data.spaces;
     if (VERBOSE) { console.log(`Click on ${letter.toUpperCase()}`) };
 
     if (data.word.includes(letter)) {
-        if (letterButton != null) { letterButton.disabled = true; letterButton.style.backgroundColor = "rgb(94, 203, 136)" }
+        if (letterButton != null) { letterButton.disabled = true; letterButton.style.backgroundColor = GREEN }
         // update the state data
         for (let k = 0; k < data.word.length; k++) {
-            if (data.word[k] === letter) { data.knowledge[k] = true; remainingSpaces -= 1 }
+            if (data.word[k] === letter) { data.knowledge[k] = true; data.spaces -= 1 }
         }
         // if VICTORY
-        if (remainingSpaces === 0) {
+        if (data.spaces === 0) {
             for (let i = 0; i < config.alphabet.length; i++) {
                 let buttonX = document.getElementById("KB-" + config.alphabet[i]) as HTMLButtonElement;
-                if (buttonX != null) { buttonX.disabled = true; buttonX.style.backgroundColor = "rgb(94, 203, 136)" }
+                if (buttonX != null) { buttonX.disabled = true; buttonX.style.backgroundColor = GREEN }
             }
             if (VERBOSE) { console.log(config.keywords.victory.toUpperCase()) };
         }
     }
     else {
-        if (letterButton != null) { letterButton.disabled = true; letterButton.style.backgroundColor = "red"; }
+        if (letterButton != null) { letterButton.disabled = true; letterButton.style.backgroundColor = RED; }
         // update the state data
-        remainingLives -= 1;
+        data.lives -= 1;
         // if DEFEAT
-        if (remainingLives === 0) {
-            for (let j = 0; j < config.alphabet.length; j++) {
-                let buttonX = document.getElementById("KB-" + config.alphabet[j]) as HTMLButtonElement;
-                if (buttonX != null) { buttonX.disabled = true; buttonX.style.backgroundColor = "red" }
+        if (data.lives === 0) {
+            for (let k = 0; k < config.alphabet.length; k++) {
+                let buttonX = document.getElementById("KB-" + config.alphabet[k]) as HTMLButtonElement;
+                if (buttonX != null) { buttonX.disabled = true; buttonX.style.backgroundColor = RED }
+            }
+            let mysteryLetters = Array.from(document.getElementsByClassName("word-letter")) as HTMLDivElement[];
+            for (let k = 0; k < data.word.length; k++) {
+                if (!data.knowledge[k]) {
+                    data.knowledge[k] = true;
+                    mysteryLetters[k].style.color = RED;
+                }
             }
             if (VERBOSE) { console.log(config.keywords.defeat.toUpperCase()) };
 
         };
     }
-    setData({ ...data, lives: remainingLives, spaces: remainingSpaces });
+    setData({ ...data }); //, lives: remainingLives, spaces: remainingSpaces });
 }
 
 export default Keyboard;

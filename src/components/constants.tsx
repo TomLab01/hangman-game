@@ -33,8 +33,12 @@ export const ENGLISH_KEYWORDS: keywordsType = {
     defeat: "game over"
 }
 
+export const GREEN: string = "rgb(94, 203, 136)";
+
+export const RED: string = "red";
+
 export const LIVES_BY_LEVELS: number[] = [10, 7, 4]; // nb of heart/allowed errors for each level
 
-export const VISIBILITY: boolean = true; // dev tool const
+export const VISIBILITY: boolean = false; // dev tool const
 
-export const VERBOSE: boolean = true; // dev tool const
+export const VERBOSE: boolean = false; // dev tool const

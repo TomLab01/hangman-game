@@ -51,13 +51,10 @@ function restartButton(data: dataType, setData: (value: dataType) => void, confi
 		spaces: newWord.length
 	});
 	// clean keyboard buttons
-	for (let i = 0; i < config.alphabet.length; i++) {
-		const buttonLetter = document.getElementById("KB-" + config.alphabet[i]) as HTMLButtonElement | null;
-		if (buttonLetter != null) {
-			buttonLetter.disabled = false;
-			buttonLetter.style.removeProperty("background-color") // remove inline CSS => goes back to its original style.css color
-		}
-	}
+	(Array.from(document.getElementsByClassName("keyboard-letter")) as HTMLButtonElement[]).forEach(
+		(btn) => { btn.disabled = false; btn.style.removeProperty("background-color") });
+	// clean mystery letters
+	(Array.from(document.getElementsByClassName("word-letter")) as HTMLDivElement[]).forEach((elt) => elt.style.removeProperty("color"));
 	if (VERBOSE) { console.log("Restart the game") };
 }
 
